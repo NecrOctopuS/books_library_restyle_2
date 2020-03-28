@@ -122,8 +122,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .idea/
-*.jpg
-*.json
 *.pickle
 *.log
 
