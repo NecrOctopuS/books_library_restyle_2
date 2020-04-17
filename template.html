@@ -11,7 +11,6 @@
     <title>Hello, world!</title>
   </head>
   <body>
-
       <div class="container">
         <nav aria-label="Page navigation example">
           <ul class="pagination" style="margin-top: 10px">
@@ -25,15 +24,15 @@
               </li>
             {% endif %}
             {% for page_number in range(0, max_page_number) %}
-            {% if page_number == current_page_number %}
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="../pages/index{{page_number}}.html">{{page_number+1}} <span class="sr-only">(current)</span></a>
-              </li>
-            {% else %}
-              <li class="page-item">
-                <a class="page-link" href="../pages/index{{page_number}}.html">{{page_number+1}}</a>
-              </li>
-            {% endif %}
+              {% if page_number == current_page_number %}
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="../pages/index{{page_number}}.html">{{page_number+1}} <span class="sr-only">(current)</span></a>
+                </li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="../pages/index{{page_number}}.html">{{page_number+1}}</a>
+                </li>
+              {% endif %}
             {% endfor %}
             {% if current_page_number < max_page_number-1 %}
               <li class="page-item">
@@ -44,7 +43,6 @@
                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Следующая</a>
               </li>
             {% endif %}
-
           </ul>
         </nav>
         <div class="row">
@@ -74,9 +72,6 @@
           {% endfor %}
         </div>
       </div>
-
-
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../static/jquery-3.3.1.slim.min.js"></script>
