@@ -2,20 +2,22 @@ from livereload import Server
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import json
 import os
+from dotenv import load_dotenv
 
-folder = 'pages'
-BOOKS_PER_PAGE = 6
+load_dotenv()
+PAGES_FOLDER = os.getenv('PAGES_FOLDER')
+BOOKS_PER_PAGE = int(os.getenv('BOOKS_PER_PAGE'))
 
 
 def on_reload(env, chunks):
     template = env.get_template('template.html')
-    os.makedirs(folder, exist_ok=True)
+    os.makedirs(PAGES_FOLDER, exist_ok=True)
     max_page_number = len(chunks)
     for chunk_number, chunk in enumerate(chunks):
         current_page_number = chunk_number
         rendered_page = template.render(books=chunk, current_page_number=current_page_number,
                                         max_page_number=max_page_number)
-        with open(f'{folder}/index{chunk_number}.html', 'w', encoding="utf8") as file:
+        with open(f'{PAGES_FOLDER}/index{chunk_number}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
 
