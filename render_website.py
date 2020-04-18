@@ -3,6 +3,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import json
 import os
 from dotenv import load_dotenv
+from more_itertools import chunked
 
 load_dotenv()
 PAGES_FOLDER = os.getenv('PAGES_FOLDER')
@@ -30,7 +31,7 @@ def main():
     with open("book_informations.json", "r", encoding="utf8") as my_file:
         file_contents = my_file.read()
     books = json.loads(file_contents)
-    chunks = [books[x:x + BOOKS_PER_PAGE] for x in range(0, len(books), BOOKS_PER_PAGE)]
+    chunks = list(chunked(books, BOOKS_PER_PAGE))
 
     on_reload(env, chunks)
     server = Server()
