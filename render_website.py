@@ -19,7 +19,8 @@ def on_reload(env, chunks):
     for chunk_number, chunk in enumerate(chunks):
         current_page_number = chunk_number
         rendered_page = template.render(books=chunk, current_page_number=current_page_number,
-                                        max_page_number=max_page_number, static_url=STATIC_URL, media_url=MEDIA_URL)
+                                        max_page_number=max_page_number, static_url=STATIC_URL, media_url=MEDIA_URL,
+                                        )
         with open(f'{PAGES_FOLDER}/index{chunk_number}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
@@ -27,7 +28,8 @@ def on_reload(env, chunks):
 def main():
     env = Environment(
         loader=FileSystemLoader('.'),
-        autoescape=select_autoescape(['html', 'xml'])
+        autoescape=select_autoescape(['html', 'xml']),
+        trim_blocks=True
     )
 
     with open("book_informations.json", "r", encoding="utf8") as my_file:
