@@ -28,8 +28,8 @@ def main():
     )
 
     with open("book_informations.json", "r", encoding="utf8") as my_file:
-        book_informations = my_file.read()
-    books = json.loads(book_informations)
+        file_contents = my_file.read()
+    books = json.loads(file_contents)
     chunks = [books[x:x + BOOKS_PER_PAGE] for x in range(0, len(books), BOOKS_PER_PAGE)]
 
     on_reload(env, chunks)
