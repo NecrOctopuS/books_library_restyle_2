@@ -8,6 +8,8 @@ from more_itertools import chunked
 load_dotenv()
 PAGES_FOLDER = os.getenv('PAGES_FOLDER')
 BOOKS_PER_PAGE = int(os.getenv('BOOKS_PER_PAGE'))
+STATIC_URL = os.getenv('STATIC_URL')
+MEDIA_URL = os.getenv('MEDIA_URL')
 
 
 def on_reload(env, chunks):
@@ -17,7 +19,7 @@ def on_reload(env, chunks):
     for chunk_number, chunk in enumerate(chunks):
         current_page_number = chunk_number
         rendered_page = template.render(books=chunk, current_page_number=current_page_number,
-                                        max_page_number=max_page_number)
+                                        max_page_number=max_page_number, static_url=STATIC_URL, media_url=MEDIA_URL)
         with open(f'{PAGES_FOLDER}/index{chunk_number}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
