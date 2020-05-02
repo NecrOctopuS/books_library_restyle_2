@@ -8,8 +8,8 @@ from more_itertools import chunked
 load_dotenv()
 PAGES_FOLDER = os.getenv('PAGES_FOLDER')
 BOOKS_PER_PAGE = int(os.getenv('BOOKS_PER_PAGE'))
-STATIC_URL = os.getenv('STATIC_URL')
-MEDIA_URL = os.getenv('MEDIA_URL')
+STATIC_URL = '../' + os.getenv('STATIC_URL')
+MEDIA_URL = '../' + os.getenv('MEDIA_URL')
 
 
 def on_reload(env, chunks):
