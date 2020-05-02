@@ -34,8 +34,8 @@ def main():
     )
 
     with open(BOOK_INFO_PATH, "r", encoding="utf8") as my_file:
-        file_contents = my_file.read()
-    books = json.loads(file_contents)
+        file_content = my_file.read()
+    books = json.loads(file_content)
     chunks = list(chunked(books, BOOKS_PER_PAGE))
 
     on_reload(env, chunks)
