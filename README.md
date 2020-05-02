@@ -18,6 +18,7 @@ PAGES_FOLDER='pages' # Название директории куда сохра
 BOOKS_PER_PAGE='6' # Количество книг на странице
 STATIC_URL='static' # Путь до статичных файлов
 MEDIA_URL='media' # Путь до файлов книг
+BOOK_INFO_PATH='book_informations.json' # Путь до файла с информацией по книгам 
 ```
 По пути `MEDIA_URL` необходимо разместить файлы, полученные с помощью [парсера книг](https://github.com/NecrOctopuS/books_library_restyle).
 ### Цель проекта

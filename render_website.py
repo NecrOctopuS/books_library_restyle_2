@@ -10,6 +10,7 @@ PAGES_FOLDER = os.getenv('PAGES_FOLDER')
 BOOKS_PER_PAGE = int(os.getenv('BOOKS_PER_PAGE'))
 STATIC_URL = '../' + os.getenv('STATIC_URL')
 MEDIA_URL = '../' + os.getenv('MEDIA_URL')
+BOOK_INFO_PATH = os.getenv('BOOK_INFO_PATH')
 
 
 def on_reload(env, chunks):
@@ -32,7 +33,7 @@ def main():
         trim_blocks=True
     )
 
-    with open("book_informations.json", "r", encoding="utf8") as my_file:
+    with open(BOOK_INFO_PATH, "r", encoding="utf8") as my_file:
         file_contents = my_file.read()
     books = json.loads(file_contents)
     chunks = list(chunked(books, BOOKS_PER_PAGE))
