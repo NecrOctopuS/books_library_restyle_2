@@ -13,7 +13,7 @@ MEDIA_URL = '../' + os.getenv('MEDIA_URL')
 BOOK_INFO_PATH = os.getenv('BOOK_INFO_PATH')
 
 
-def on_reload(env, chunks):
+def write_books_pages(env, chunks):
     template = env.get_template('template.html')
     os.makedirs(PAGES_FOLDER, exist_ok=True)
     max_page_number = len(chunks)
@@ -38,9 +38,9 @@ def main():
     books = json.loads(file_content)
     chunks = list(chunked(books, BOOKS_PER_PAGE))
 
-    on_reload(env, chunks)
+    write_books_pages(env, chunks)
     server = Server()
-    server.watch('template.html', on_reload)
+    server.watch('template.html', write_books_pages)
     server.serve(root='.')
 
 
