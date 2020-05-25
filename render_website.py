@@ -1,10 +1,12 @@
-from livereload import Server
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+import glob
 import json
 import os
+
 from dotenv import load_dotenv
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+from livereload import Server
 from more_itertools import chunked
-import glob
+
 
 load_dotenv()
 PAGES_FOLDER = os.getenv('PAGES_FOLDER')
