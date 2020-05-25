@@ -21,12 +21,12 @@ def write_books_pages(env, chunks):
     for page in old_pages:
         os.remove(page)
     max_page_number = len(chunks)
-    for chunk_number, chunk in enumerate(chunks):
-        current_page_number = chunk_number
-        rendered_page = template.render(books=chunk, current_page_number=current_page_number,
+    for page_number, books in enumerate(chunks):
+        current_page_number = page_number
+        rendered_page = template.render(books=books, current_page_number=current_page_number,
                                         max_page_number=max_page_number, static_url=STATIC_URL, media_url=MEDIA_URL,
                                         )
-        with open(f'{PAGES_FOLDER}/index{chunk_number}.html', 'w', encoding="utf8") as file:
+        with open(f'{PAGES_FOLDER}/index{page_number}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
 
