@@ -4,6 +4,7 @@ import json
 import os
 from dotenv import load_dotenv
 from more_itertools import chunked
+import glob
 
 load_dotenv()
 PAGES_FOLDER = os.getenv('PAGES_FOLDER')
@@ -16,6 +17,9 @@ BOOK_INFO_PATH = os.getenv('BOOK_INFO_PATH')
 def write_books_pages(env, chunks):
     template = env.get_template('template.html')
     os.makedirs(PAGES_FOLDER, exist_ok=True)
+    old_pages = glob.glob(f'{PAGES_FOLDER}/index*.html')
+    for page in old_pages:
+        os.remove(page)
     max_page_number = len(chunks)
     for chunk_number, chunk in enumerate(chunks):
         current_page_number = chunk_number
